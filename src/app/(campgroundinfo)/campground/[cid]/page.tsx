@@ -1,21 +1,38 @@
-// import Image from "next/image"
+import Image from "next/image"
 
-// export default async function HospitalDetailPage({params}: {params:{hid:string}}){
+export default function HospitalDetailPage({params}:{params:{cid:string}}){
+
+    /**
+     * Mock Data for demonstration Only
+     */
+
+    const mockCampgroundRepo = new Map()
+    mockCampgroundRepo.set('001',{name:'Chulalongkorn Hospital',image:'/img/card1.jpg'})
+    mockCampgroundRepo.set('002',{name:'Rajavithi Hospital',image:'/img/card1.jpg'})
+    mockCampgroundRepo.set('003',{name:'Thammasat University Hospital',image:'/img/card1.jpg'})
+    mockCampgroundRepo.set('004',{name:'Thammasat University Hospital',image:'/img/card1.jpg'})
     
-//     const hospitalDetail = await getHospital(params.hid)
+    return(
+        <main className="text-center p-5 bg-slate-200 h-screen">
+            <h1 className="text-lg font-medium">Hospital ID {params.cid}</h1>
+            <div className="flex flex-row my-5 ">
+                <Image src={(mockCampgroundRepo.get(params.cid
+        )).image}
+                alt="Car Image"
+                width={0}
+                height={0}
+                sizes="100vh"
+                className="rounded-lg w-[30%]"/>
+                <div className="text-md mx-5 text-slate-200">
+                    {(mockCampgroundRepo.get(params.cid
+                )).name}
+                </div>
+            </div>
+        </main>
+    );
+}
+
+export async function generateStaticParams() {
+    return [{cid:'001'},{cid:'002'},{cid:'003'}]
     
-//     return (
-//         <div className='bg-cyan-900 justify-between items-center p-0 m-0 w-screen h-[95vh]'>
-//             <div className="flex flex-row p-[20px] text-white">
-//                 <Image src={hospitalDetail.data.picture} alt="Car Image" width={0} height={0} sizes="100vw" className="rounded-lg w-[30%]"></Image>
-//                 <div className="text-[20px] mx-5 text-left">{hospitalDetail.data.name}
-//                     <div className="text-[16px] mx-5">Address: {hospitalDetail.data.address}</div>
-//                     <div className="text-[16px] mx-5">District: {hospitalDetail.data.district}</div>
-//                     <div className="text-[16px] mx-5">Province: {hospitalDetail.data.province}</div>
-//                     <div className="text-[16px] mx-5">Postal Code: {hospitalDetail.data.postalcode}</div>
-//                     <div className="text-[16px] mx-5">Telephone: {hospitalDetail.data.tel}</div>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
+}

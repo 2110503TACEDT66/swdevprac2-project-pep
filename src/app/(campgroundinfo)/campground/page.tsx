@@ -1,3 +1,4 @@
+
 import CampgroundCatalog from "@/components/CampgroundCatalog";
 
 export default function Campground(){
@@ -7,4 +8,5 @@ export default function Campground(){
             <CampgroundCatalog></CampgroundCatalog>
         </main>
     );
-}
+    }
+
