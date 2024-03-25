@@ -16,12 +16,12 @@ export default function Card({ campgroundName, imgSrc, province, country,initial
 
     return (
         <InteractiveCard>
-            <div className='w-full h-[70%] relative rounded-t-lg'>
+            <div className='w-full h-[70%] relative'>
                 <Image
                     src={imgSrc}
                     alt='Campground Picture'
                     fill={true}
-                    className='object-cover rounded-t-lg'
+                    className='object-cover'
                 />
             </div>
             <div className='w-full h-[10%] p-[10px] text-gray-700 font-medium text-center'>
