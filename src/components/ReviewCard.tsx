@@ -1,8 +1,10 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Rating } from '@mui/material';
 import { useState } from 'react';
+import axios from 'axios';
+import config from '@/utils/config';
 
 interface ReviewCardProp {
     user: string,
@@ -38,46 +40,3 @@ export default function ReviewCard({ user, rating, review }:ReviewCardProp) {
         </div>
     );
 }
-
-// 'use client'
-// import Image from 'next/image';
-// import { Rating } from '@mui/material';
-// import React, { useEffect, useState } from 'react';
-
-// interface CardProps {
-//     campgroundName: string;
-//     imgSrc: string;
-//     province: string;
-//     country:string;
-//     initialRating: number;
-// }
-
-// export default function ReviewCard({ campgroundName, imgSrc, province, country,initialRating}: CardProps) {
-
-//     return (
-//         <div>
-//             <div className='w-full h-[70%] relative rounded-t-lg'>
-//                 <Image
-//                     src={imgSrc}
-//                     alt='Campground Picture'
-//                     fill={true}
-//                     className='object-cover rounded-t-lg'
-//                 />
-//             </div>
-//             <div className='w-full h-[10%] p-[10px] text-gray-700 font-medium text-center'>
-//                 {campgroundName}
-//             </div>
-//             <div className='w-full h-[10%] p-[10px] text-gray-700 font-medium text-center'>
-//                 {province}, {country}
-//             </div>
-//             <div className='w-full h-[10%] p-[10px] flex justify-center items-center'>
-//                 <Rating
-//                     id={campgroundName + ' Rating'}
-//                     name={campgroundName + ' Rating'}
-//                     data-testid={campgroundName + ' Rating'}
-//                     value={initialRating}
-//                 ></Rating>
-//             </div>
-//         </div>
-//     );
-// }

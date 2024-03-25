@@ -12,7 +12,6 @@ export default async function CampgroundDetailPage({params}:{params:{cid:string}
     return(
         <div>
             <CampgroundDetail campgroundDetail={campgroundDetail.data}></CampgroundDetail>
-            <RatingOverall></RatingOverall>
             <ReviewCatalog reviewJson={reviewDetail}></ReviewCatalog>
         </div>
     );

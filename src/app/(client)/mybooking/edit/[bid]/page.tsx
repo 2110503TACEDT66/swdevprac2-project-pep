@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 import { BookingItem,UserRole,BookingJSON, UserJSON } from '../../../../../../interface';
 
 
-function ReservePage({ params }: {params:{bid:string}}) {
+function EditBookingPage({ params }: {params:{bid:string}}) {
     const [user, setUser] = useState<UserRole>(Object);
     const [booking, setBooking] = useState<BookingItem>({
         campground: {
@@ -66,7 +66,6 @@ function ReservePage({ params }: {params:{bid:string}}) {
             Swal.fire({
                 title: "Error",
                 text: err.message,
-                icon: "error",
                 timer: 2000
             })
         }
@@ -76,7 +75,7 @@ function ReservePage({ params }: {params:{bid:string}}) {
         setDate(newDate);
     };
 
-    const handleReservation = async () => {
+    const handleBooking = async () => {
         try {
             if (date) {
                 const formattedDate: string = date.toISOString();
@@ -89,7 +88,7 @@ function ReservePage({ params }: {params:{bid:string}}) {
                 if (response.data.success) {
                     Swal.fire({
                         title: "Confirmed",
-                        text: "Reserved successfully",
+                        text: "Booked successfully",
                         icon: "success",
                         timer: 2000
                     });
@@ -111,7 +110,7 @@ function ReservePage({ params }: {params:{bid:string}}) {
         }
     };
 
-    // Function to format the reservation date to show only the date part
+    // Function to format the booking date to show only the date part
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
         const options = { month: '2-digit' as const, day: '2-digit' as const, year: 'numeric' as const };
@@ -122,7 +121,7 @@ function ReservePage({ params }: {params:{bid:string}}) {
         <>
             
             <div className='container min-h-screen py-10 lg:py-20 px-10 md:px-0 mx-auto lg:w-1/3 animate-fade-up'>
-                <p className='font-bold text-3xl text-center pt-6 text-emerald-900'>Target Reservation</p>
+                <p className='font-bold text-3xl text-center pt-6 text-emerald-900'>Target Booking</p>
                 <div className='border p-4 mt-4 rounded-xl hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 bg-white'>
                     <h2 className='font-bold text-lg'>{booking.campground.name}</h2>
                     <p className='text-gray-600 my-2'>
@@ -142,28 +141,9 @@ function ReservePage({ params }: {params:{bid:string}}) {
                             : ''
                     }
                 </div>
-                {/* {booking.map((item, index) => (
-                    <div key={index} className='border p-4 mt-4 rounded-xl hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 bg-white'>
-                        <h2 className='font-bold text-lg'>{item.campground.name}</h2>
-                        <p className='text-gray-600 my-2'>
-                            <LocationOnIcon className='text-teal-400' /> {item.campground.address}
-                        </p>
-                        <p className='text-gray-600 my-2'>
-                            <LocalPhoneIcon className='text-teal-400' /> {item.campground.telephoneNumber}
-                        </p>
-                        <p className='text-gray-600 my-2'>
-                            <CalendarMonthIcon className='text-teal-400' /> {formatDate(item.bookingDate)}
-                        </p>
-                        {user.role === "admin" &&
-                            <p className='text-gray-600 my-2'>
-                                <PersonIcon className='text-teal-400' /> {item.user}
-                            </p>
-                        }
-                    </div>
-                ))} */}
 
                 <div className="card shadow-2xl bg-base-100 my-8">
-                    <p className='font-bold text-2xl text-center pt-6 text-emerald-900'>Reserve Form</p>
+                    <p className='font-bold text-2xl text-center pt-6 text-emerald-900'>Booking Form</p>
                     <form className="card-body">
                         <FormControl>
                             <label className="label">
@@ -177,7 +157,7 @@ function ReservePage({ params }: {params:{bid:string}}) {
                             </LocalizationProvider>
                         </FormControl>
                         <div className="form-control mt-6">
-                            <button className="btn btn-outline btn-success" type="button" onClick={handleReservation}>Confirm</button>
+                            <button className="btn btn-outline btn-success" type="button" onClick={handleBooking}>Confirm</button>
                         </div>
                     </form>
                 </div>
@@ -187,4 +167,4 @@ function ReservePage({ params }: {params:{bid:string}}) {
     );
 }
 
-export default ReservePage;
+export default EditBookingPage;

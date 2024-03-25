@@ -27,7 +27,6 @@ function SignInForm() {
             Swal.fire({
             title: 'Sign In',
             text: 'Sign in successful.',
-            icon: 'success',
             timer: 2000
             });
             // Redirect the user after successful sign-in
@@ -44,7 +43,6 @@ function SignInForm() {
             Swal.fire({
                 title: "Sign In Error",
                 text: error.response ? error.response.data.message : "An error occurred",
-                icon: "error",
                 timer: 2000
             });
             console.log(error.message);

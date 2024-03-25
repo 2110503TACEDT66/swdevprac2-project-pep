@@ -10,12 +10,12 @@ export default function RatingOverall() {
     const starLevels = [20, 40, 60, 80, 100];
 
     return (
-        <div className="h-[50%] w-full p-2 bg-white">
-            <div className="h-[60%] w-full bg-white text-center px-48 py-12">
-                <p className="text-lg mb-6">
+        <div className="h-[50%] w-full p-2 bg-white m-0">
+            <div className="h-[60%] w-full bg-white text-center py-12">
+                <p className="text-lg text-black mb-6">
                     We're here to make your outdoor adventure unforgettable. Whether you're a seasoned camper or new to camping, our peaceful surroundings and great facilities have everything you need for a fantastic experience.
                 </p>
-                <p className="text-lg mb-6">
+                <p className="text-lg text-black mb-6">
                     Want to hear from other campers? Dive into our reviews below to learn about their experiences and discover why our campground is so special.
                 </p>
             </div>

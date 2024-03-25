@@ -57,7 +57,7 @@ export default function TopMenu(){
     }
 
     return (
-        <div className="h-[40px] px-[10px] m-0 fixed top-0 left-0 bottom-0 right-0 z-30 flex flex-row items-center bg-gray-800 justify-between">
+        <div className="h-[5vh] px-[10px] m-0 fixed top-0 left-0 bottom-0 right-0 z-30 flex flex-row items-center bg-gray-800 justify-between">
             <div className="flex items-center">
                 <TopMenuItem title='Logo' pageRef='/'></TopMenuItem>
             </div>

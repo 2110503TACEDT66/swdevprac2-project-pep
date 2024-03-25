@@ -46,7 +46,6 @@ function SignUpForm() {
       Swal.fire({
         title: "Sign Up Error",
         text: error.response ? error.response.data.message : "An error occurred",
-        icon: "error",
         timer: 2000
       });
       console.error("Sign Up Error:", error);

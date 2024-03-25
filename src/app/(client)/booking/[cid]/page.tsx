@@ -62,8 +62,7 @@ function BookingPage({params}:{params:{cid:string}}) {
                 if (response.data.success) {
                     Swal.fire({
                         title: "Confirmed",
-                        text: "Reserved successfully",
-                        icon: "success",
+                        text: "Booked successfully",
                         timer: 2000
                     });
 
@@ -78,8 +77,7 @@ function BookingPage({params}:{params:{cid:string}}) {
             if (error.response.data.message === "Not authorize to access this route") {
                 Swal.fire({
                     title: "Authorized failed",
-                    text: "Please login before reserve a massage service",
-                    icon: "error",
+                    text: "Please login before booking a campground",
                     timer: 2000
                 })
 
@@ -90,7 +88,6 @@ function BookingPage({params}:{params:{cid:string}}) {
                 Swal.fire({
                     title: "Error",
                     text: error.response.data.message,
-                    icon: "error",
                     timer: 2000
                 });
             }
@@ -114,7 +111,7 @@ function BookingPage({params}:{params:{cid:string}}) {
                 </div>
 
                 <div className="card shadow-2xl bg-base-100 my-8">
-                    <p className='font-bold text-2xl text-center pt-6 text-emerald-900'>Reserve Form</p>
+                    <p className='font-bold text-2xl text-center pt-6 text-emerald-900'>Booking Form</p>
                     <form className="card-body">
                         <FormControl>
                             <label className="label">

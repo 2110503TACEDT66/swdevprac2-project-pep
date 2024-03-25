@@ -58,13 +58,12 @@ function MyBookingPage() {
       Swal.fire({
         title: "Error",
         text: err.message,
-        icon: "error",
         timer: 2000
       })
     }
   }
 
-  // Function to format the reservation date to show only the date part
+  // Function to format the booking date to show only the date part
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const options = { month: '2-digit' as const, day: '2-digit' as const, year: 'numeric' as const };
@@ -78,7 +77,7 @@ function MyBookingPage() {
   const handleDelete = (bid: string) => {
     Swal.fire({
       title: "Delete Confirmation",
-      text: "Are you sure to delete this reservation",
+      text: "Are you sure to delete this booking",
       showCancelButton: true,
       cancelButtonText: "Cancel",
       confirmButtonText: "Delete"
@@ -88,8 +87,8 @@ function MyBookingPage() {
           const response = await axios.delete<DeleteJSON>(`${config.api}/bookings/${bid}`, config.headers())
           if (response.data.success === true) {
             Swal.fire({
-              title: "Deleted Reservation",
-              text: "reservation has been deleted.",
+              title: "Deleted Booking",
+              text: "Booking has been deleted.",
               timer: 2000
             })
 
@@ -101,7 +100,6 @@ function MyBookingPage() {
           Swal.fire({
             title: "Deleting Error",
             text: `delete failed: ${err}`,
-            icon: 'error',
             timer: 2000
           })
         }

@@ -2,7 +2,8 @@
 import Image from 'next/image';
 import InteractiveCard from './InteractiveCard';
 import { Rating } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 interface CardProps {
     campgroundName: string;
@@ -16,21 +17,21 @@ export default function Card({ campgroundName, imgSrc, province, country,initial
 
     return (
         <InteractiveCard>
-            <div className='w-full h-[70%] relative rounded-t-lg'>
+            <div className='w-full h-[70%] relative'>
                 <Image
                     src={imgSrc}
                     alt='Campground Picture'
                     fill={true}
-                    className='object-cover rounded-t-lg'
+                    className='object-cover'
                 />
             </div>
-            <div className='w-full h-[10%] p-[10px] text-gray-700 font-medium text-center'>
+            <div className='w-full h-[14%] pt-[30px] text-lg text-gray-700 font-semibold text-center'>
                 {campgroundName}
             </div>
-            <div className='w-full h-[10%] p-[10px] text-gray-700 font-medium text-center'>
-                {province}, {country}
+            <div className='w-full h-[8%] pt-0 text-gray-700 font-medium text-center'>
+                <LocationOnIcon/> {province}, {country}
             </div>
-            <div className='w-full h-[10%] p-[10px] flex justify-center items-center'>
+            <div className='w-full h-[8%] pt-0 flex justify-center'>
                 <Rating
                     id={campgroundName + ' Rating'}
                     name={campgroundName + ' Rating'}
