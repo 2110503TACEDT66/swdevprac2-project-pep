@@ -1,12 +1,9 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import Banner from '@/components/home/Banner'
-import
+import Banner from "@/components/home/Banner"
 
 export default function Home() {
   return (
-    <main>
-      <Banner/>
-    </main>
-  );
+    <div className='w-screen'>
+      <Banner></Banner>
+    </div>
+  )
 }

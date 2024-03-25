@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -5,7 +6,7 @@ import { useRouter } from 'next/router';
 import config from './utils/config';
 
 function SignInForm() {
-    const router = useRouter();
+   // const router = useRouter();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,7 +31,7 @@ function SignInForm() {
             timer: 2000
             });
             // Redirect the user after successful sign-in
-            router.push('/dashboard');
+            //router.push('/dashboard');
         } else {
             throw new Error("Sign In failed.");
         }
