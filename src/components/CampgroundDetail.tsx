@@ -4,7 +4,6 @@ import Link from "next/link"
 
 export default async function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }){
     
-    
     return (
         <div className='bg-cyan-900 justify-between items-center p-0 m-0 w-screen h-[95vh]'>
             <div className="flex flex-row p-[20px] text-white">
