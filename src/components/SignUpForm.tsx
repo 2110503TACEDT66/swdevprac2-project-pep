@@ -10,18 +10,19 @@ function SignUpForm() {
     const router = useRouter()
 
     const [name, setName] = useState('');
+    const [telephoneNumber, setTelephoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [tel, setTel] = useState('');
+  
 
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         try {
         const payload = { 
             name,
+            telephoneNumber,
             email,
             password,
-            tel,
             role: "user"
         };
 
@@ -84,9 +85,9 @@ function SignUpForm() {
       <div>
         <label>Telephone Number:</label>
         <input 
-          type="tel" 
-          value={tel} 
-          onChange={(e) => setTel(e.target.value)} 
+          type="telephoneNumber" 
+          value={telephoneNumber} 
+          onChange={(e) => setTelephoneNumber(e.target.value)} 
           required 
         />
       </div>
