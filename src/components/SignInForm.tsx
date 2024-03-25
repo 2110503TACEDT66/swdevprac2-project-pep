@@ -1,8 +1,9 @@
+'use client'
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useRouter } from 'next/router';
-import config from '../utils/config';
+import { useRouter } from 'next/navigation'
+import config from '@/utils/config';
 
 function SignInForm() {
     const router = useRouter();
@@ -30,7 +31,12 @@ function SignInForm() {
             timer: 2000
             });
             // Redirect the user after successful sign-in
-            router.push('/dashboard');
+            localStorage.setItem(config.tokenName, response.data.token)
+                    
+            setTimeout(() => {
+                router.push('/')
+            }, 1000)
+
         } else {
             throw new Error("Sign In failed.");
         }
@@ -41,33 +47,36 @@ function SignInForm() {
                 icon: "error",
                 timer: 2000
             });
+            console.log(error.message);
             console.error("Sign In Error:", error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-        <div>
-            <label>Email:</label>
-            <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-            />
+        <div className='border p-[10px]'>
+            <form onSubmit={handleSubmit}>
+            <div>
+                <input 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+                placeholder='Email'
+                required 
+                />
+            </div>
+            <div>
+                <input 
+                type="password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                placeholder='Password'
+                required 
+                />
+            </div>
+            <button type="submit" className='border p-[5px]'>Sign In</button>
+            </form>
         </div>
-        <div>
-            <label>Password:</label>
-            <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-            />
-        </div>
-        <button type="submit">Sign In</button>
-        <p>If you don't have an account, <a href="/signup">sign up here</a>.</p>
-        </form>
+        
     );
 }
 

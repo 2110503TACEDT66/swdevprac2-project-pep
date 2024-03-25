@@ -1,5 +1,5 @@
 const config = {
-    api: "https://campground-booking-backend-api.vercel.app/api",
+    api: "https://campground-booking-backend-kq8e.vercel.app/api/v1",
     tokenName: 'token',
     headers: () => {
         return {

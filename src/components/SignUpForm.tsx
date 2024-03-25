@@ -36,6 +36,9 @@ function SignUpForm() {
           timer: 2000
         });
         // Optionally redirect the user after successful signup
+        setTimeout(() => {
+            router.push('/signin')
+        }, 1000)
       } else {
         throw new Error("Sign Up failed.");
       }
