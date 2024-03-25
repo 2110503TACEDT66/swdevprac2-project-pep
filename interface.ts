@@ -1,21 +1,20 @@
-interface HospitalItem {
+export interface CampgroundItem {
     _id: string,
     name: string,
+    description:string,
     address: string,
-    district: string,
     province: string,
+    country:string,
     postalcode: string,
-    tel: string,
-    picture: string,
-    __v: number,
-    id: string
+    telephoneNumber: string,
+    picture: string
   }
     
-  interface HospitalJson {
+  export interface CampgroundJson {
     success: boolean,
     count: number,
     pagination: Object,
-    data: HospitalItem[]
+    data: CampgroundItem[]
   }
   
   export interface BookingItem {

@@ -26,7 +26,7 @@ export default function Banner() {
                     className='bg-slate-100/20 text-center text-[18px] text-gray-200 hover:text-amber-100 px-[15px] pt-[5px] pb-[8px] border border-gray-200 hover:border-amber-100'
                     onClick={(e) => {
                         e.stopPropagation();
-                        router.push('/api/auth/signin');
+                        router.push('/signin');
                     }}
                 >
                     Sign-In
