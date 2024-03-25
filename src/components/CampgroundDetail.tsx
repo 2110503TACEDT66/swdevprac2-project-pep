@@ -3,7 +3,6 @@ import getCampground from "@/libs/getCampground"
 
 export default async function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }){
     
-    // const campgroundDetail = await getCampground(params.cid)
     
     return (
         <div className='bg-cyan-900 justify-between items-center p-0 m-0 w-screen h-[95vh]'>
