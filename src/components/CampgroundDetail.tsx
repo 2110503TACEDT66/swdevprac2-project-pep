@@ -1,5 +1,6 @@
 import Image from "next/image"
 import getCampground from "@/libs/getCampground"
+import Link from "next/link"
 
 export default async function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }){
     
@@ -15,6 +16,12 @@ export default async function CampgroundDetail({ campgroundDetail }: { campgroun
                     <div className="text-[16px] mx-5">Postal Code: {campgroundDetail.postalcode}</div>
                     <div className="text-[16px] mx-5">Telephone: {campgroundDetail.telephoneNumber}</div>
                 </div>
+                <Link href={`/booking/${campgroundDetail._id}`}>
+                        <button className="block rounded-md bg-sky-600 hover:bg-sky-800 text-white px-3 py-2 shadow-sm">
+                            Make reservation
+                        </button>
+                    
+                </Link>
             </div>
         </div>
     )

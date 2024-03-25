@@ -53,7 +53,6 @@ export default function TopMenu(){
     const handleSignIn = async () => {
         // Sign in logic
         // After successful sign-in:
-        setIsLoggedIn(true); // Set isLoggedIn to true immediately after sign-in
         router.push('/signin');
     }
 
@@ -64,7 +63,6 @@ export default function TopMenu(){
             </div>
             <div className="flex items-center">
                 <TopMenuItem title='Campground' pageRef='/campground'></TopMenuItem>
-                <TopMenuItem title='Booking' pageRef='/booking'></TopMenuItem>
                 <TopMenuItem title='My Booking' pageRef='/mybooking'></TopMenuItem>
                 <div className='m-[5px] px-[3px] pb-[3px] border border-gray-200 hover:border-amber-100'>
                 {isLoggedIn ? (

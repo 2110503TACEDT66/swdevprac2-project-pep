@@ -18,9 +18,38 @@ export interface CampgroundItem {
   }
   
   export interface BookingItem {
-    name: string,
-    surname: string,
-    id: string,
-    hospital: string,
-    bookDate: string
+    campground: {
+      address: string;
+      name: string;
+      telephoneNumber: string;
+    };
+    user: string
+    bookingDate: string;
+    _id: string;
+  }
+  
+  export interface BookingJSON {
+    success: boolean;
+    data: BookingItem;
+  }
+
+  export interface BookingListJSON {
+    success: boolean;
+    data: BookingItem[];
+  }
+  
+  export interface UserRole {
+    _id: string,
+    role: string
+  }
+  
+  export interface UserJSON {
+    success: boolean;
+    data: UserRole;
+    message: string;
+  }
+  
+  export interface DeleteJSON {
+    success: boolean;
+    data: Object
   }
