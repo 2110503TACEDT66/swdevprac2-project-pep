@@ -36,7 +36,7 @@ export default function CampgroundCatalog(){
     return(
         <div className='bg-slate-200 h-screen'>
             <div className='p-[40px] flex flex-col justify-around items-around'>
-                <div className='flex flex-row justify-center space-x-10 overflow overflow-x-scroll'>
+                <div className='flex flex-row justify-start space-x-10 overflow overflow-x-scroll'>
                     {
                     mockCampgroundRepo.map((campgroundItem)=>(
                         <Link href={`/campground/${campgroundItem.cid}`} className='w-[300px]'>

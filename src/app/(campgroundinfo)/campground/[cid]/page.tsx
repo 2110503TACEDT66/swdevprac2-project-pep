@@ -1,4 +1,6 @@
 import Image from "next/image"
+import CampgroundDetail from "@/components/CampgroundDetail"
+import ReviewCatalog from "@/components/ReviewCatalog"
 
 export default function HospitalDetailPage({params}:{params:{cid:string}}){
 
@@ -13,22 +15,10 @@ export default function HospitalDetailPage({params}:{params:{cid:string}}){
     mockCampgroundRepo.set('004',{name:'Thammasat University Hospital',image:'/img/card1.jpg'})
     
     return(
-        <main className="text-center p-5 bg-slate-200 h-screen">
-            <h1 className="text-lg font-medium">Hospital ID {params.cid}</h1>
-            <div className="flex flex-row my-5 ">
-                <Image src={(mockCampgroundRepo.get(params.cid
-        )).image}
-                alt="Car Image"
-                width={0}
-                height={0}
-                sizes="100vh"
-                className="rounded-lg w-[30%]"/>
-                <div className="text-md mx-5 text-slate-200">
-                    {(mockCampgroundRepo.get(params.cid
-                )).name}
-                </div>
-            </div>
-        </main>
+        <div>
+            <CampgroundDetail params={{cid:"001"}}/>
+            <ReviewCatalog/>
+        </div>
     );
 }
 
