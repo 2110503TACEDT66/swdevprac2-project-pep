@@ -32,7 +32,6 @@ function SignUpForm() {
         Swal.fire({
           title: 'Sign Up',
           text: 'Sign up successful.',
-          icon: 'success',
           timer: 2000
         });
         // Optionally redirect the user after successful signup
