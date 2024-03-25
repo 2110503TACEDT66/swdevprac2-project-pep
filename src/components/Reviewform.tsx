@@ -51,7 +51,7 @@ function ReviewForm({ params, onClose }: { params: { cid: string }, onClose: () 
                 <button onClick={onClose} className="absolute top-8 right-5 px-2 py-1 text-gray-400 hover:text-gray-600">
                     X
                 </button>
-                <h2 className="text-2xl font-bold mb-4">Submit Review</h2>
+                <h2 className="text-2xl font-bold mb-4">Create Review</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
                     <label className="text-gray-700">Author:</label>
                     <input
