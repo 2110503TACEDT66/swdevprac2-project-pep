@@ -1,8 +1,5 @@
-'use client'
-
 import React from 'react';
 import { Rating } from '@mui/material';
-import { useState } from 'react';
 
 interface ReviewCardProp {
     user: string,
@@ -14,7 +11,7 @@ interface ReviewCardProp {
 export default function ReviewCard({ user, rating, review }:ReviewCardProp) {
 
     return (
-        <div className="w-full bg-white p-4  mb-4 flex">
+        <div className="w-full bg-white p-4 rounded-sm mt-2 flex">
         <div className="flex-none mr-4">
             <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
         </div>
