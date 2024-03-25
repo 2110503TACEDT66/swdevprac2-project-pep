@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
-import config from './utils/config';
+import config from '../utils/config';
 
 function SignInForm() {
     const router = useRouter();
