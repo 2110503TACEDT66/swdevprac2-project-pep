@@ -1,38 +1,21 @@
 import Image from "next/image"
+import getCampground from "@/libs/getCampground"
 
-export default function CampgroundDetail({params}:{params:{cid:string}}){
-
-    /**
-     * Mock Data for demonstration Only
-     */
-
-    const mockCampgroundRepo = new Map()
-    mockCampgroundRepo.set('001',{name:'Chulalongkorn Hospital',image:'/img/card1.jpg'})
-    mockCampgroundRepo.set('002',{name:'Rajavithi Hospital',image:'/img/card1.jpg'})
-    mockCampgroundRepo.set('003',{name:'Thammasat University Hospital',image:'/img/card1.jpg'})
-    mockCampgroundRepo.set('004',{name:'Thammasat University Hospital',image:'/img/card1.jpg'})
-
-    return(
-        <main className="text-center p-5 bg-slate-200 h-screen">
-            <h1 className="text-lg font-medium">Hospital ID {params.cid}</h1>
-            <div className="flex flex-row my-5 ">
-                <Image src={(mockCampgroundRepo.get(params.cid
-        )).image}
-                alt="Car Image"
-                width={0}
-                height={0}
-                sizes="100vh"
-                className="rounded-lg w-[30%]"/>
-                <div className="text-md mx-5 text-slate-200">
-                    {(mockCampgroundRepo.get(params.cid
-                )).name}
+export default async function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }){
+    
+    
+    return (
+        <div className='bg-cyan-900 justify-between items-center p-0 m-0 w-screen h-[95vh]'>
+            <div className="flex flex-row p-[20px] text-white">
+                <Image src={campgroundDetail.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="rounded-lg w-[30%]"></Image>
+                <div className="text-[20px] mx-5 text-left">{campgroundDetail.name}
+                    <div className="text-[16px] mx-5">Description: {campgroundDetail.description}</div>
+                    <div className="text-[16px] mx-5">Address: {campgroundDetail.address}</div>
+                    <div className="text-[16px] mx-5">Province: {campgroundDetail.province}</div>
+                    <div className="text-[16px] mx-5">Postal Code: {campgroundDetail.postalcode}</div>
+                    <div className="text-[16px] mx-5">Telephone: {campgroundDetail.telephoneNumber}</div>
                 </div>
             </div>
-        </main>
-    );
-}
-
-export async function generateStaticParams() {
-    return [{cid:'001'},{cid:'002'},{cid:'003'}]
-
+        </div>
+    )
 }
