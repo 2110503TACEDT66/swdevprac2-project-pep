@@ -1,28 +1,16 @@
 import Image from "next/image"
 import CampgroundDetail from "@/components/CampgroundDetail"
 import ReviewCatalog from "@/components/ReviewCatalog"
+import getCampground from "@/libs/getCampground";
 
-export default function HospitalDetailPage({params}:{params:{cid:string}}){
+export default async function CampgroundlDetailPage({params}:{params:{cid:string}}){
 
-    /**
-     * Mock Data for demonstration Only
-     */
-
-    const mockCampgroundRepo = new Map()
-    mockCampgroundRepo.set('001',{name:'Chulalongkorn Hospital',image:'/img/card1.jpg'})
-    mockCampgroundRepo.set('002',{name:'Rajavithi Hospital',image:'/img/card1.jpg'})
-    mockCampgroundRepo.set('003',{name:'Thammasat University Hospital',image:'/img/card1.jpg'})
-    mockCampgroundRepo.set('004',{name:'Thammasat University Hospital',image:'/img/card1.jpg'})
+    const campgroundDetail = await getCampground(params.cid)
     
     return(
         <div>
-            <CampgroundDetail params={{cid:"001"}}/>
+            <CampgroundDetail campgroundDetail={campgroundDetail.data}/>
             <ReviewCatalog/>
         </div>
     );
-}
-
-export async function generateStaticParams() {
-    return [{cid:'001'},{cid:'002'},{cid:'003'}]
-    
 }
