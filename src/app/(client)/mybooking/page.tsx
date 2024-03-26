@@ -52,15 +52,30 @@ function MyBookingPage() {
         throw new Error(response.data.message)
       }
     } catch (err: any) {
-      console.log(err.message)
-      router.push("/")
+        if(err.message==="Request failed with status code 401"){
+            Swal.fire({
+                title: "Authorized failed",
+                text: "Please login before booking a campground",
+                timer: 2000
+            })
 
-      Swal.fire({
-        title: "Error",
-        text: err.message,
-        timer: 2000
-      })
+            setTimeout(() => {
+                router.push("/signin")
+            }, 500)
+        }else{
+            Swal.fire({
+                title: "Error",
+                text: err.message,
+                timer: 2000
+            })
+            router.push("/")
+        }
+        console.log(err.message)
     }
+      
+      
+
+      
   }
 
   // Function to format the booking date to show only the date part
