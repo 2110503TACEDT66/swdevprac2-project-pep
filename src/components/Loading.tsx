@@ -22,7 +22,7 @@ function Loading() {
         <div className='min-h-screen flex justify-center items-center'>
             <div className="flex flex-col items-center">
                 <p className="text-lg mb-4 text-gray-500">Loading...</p>
-                <div className="w-[500px] h-3 bg-gray-300 rounded-full">
+                <div className="w-[300px] md:w-[500px] h-3 bg-gray-300 rounded-full">
                     <div className="h-full bg-gray-300 rounded-full"></div>
                 </div>
             </div>

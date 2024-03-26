@@ -142,7 +142,7 @@ function EditBookingPage({ params }: {params:{bid:string}}) {
                     <div className="flex flex-col md:flex-row px-12">
                         <Image src={'/img/Mountains.jpg'} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-full h-[40vh] md:w-[40vw] md:h-[90vh]"></Image>
                     <div className="md:w-[60vw] text-gray-400 md:pt-[5%] md:px-10 text-left">
-                        <p className='text-[36px] md:text-[48px] pt-6 text-gray-600'> Your Rest</p>
+                        <p className='text-[36px] md:text-[48px] pt-6 text-gray-600'>Edit Your Rest</p>
                             
                         <div>
                             <h2 className='text-[18px] text-gray-500'>{booking.campground.name}</h2>
