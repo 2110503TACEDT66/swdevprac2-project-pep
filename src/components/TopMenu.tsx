@@ -57,20 +57,20 @@ export default function TopMenu(){
     }
 
     return (
-        <div className="h-[40px] px-[10px] m-0 fixed top-0 left-0 bottom-0 right-0 z-30 flex flex-row items-center bg-gray-800 justify-between">
+        <div className="h-[10%] px-[48px] fixed m-0 top-0 left-0 bottom-0 right-0 z-30 flex flex-row items-center bg-white justify-between">
             <div className="flex items-center">
                 <TopMenuItem title='Logo' pageRef='/'></TopMenuItem>
             </div>
             <div className="flex items-center">
                 <TopMenuItem title='Campground' pageRef='/campground'></TopMenuItem>
                 <TopMenuItem title='My Booking' pageRef='/mybooking'></TopMenuItem>
-                <div className='m-[5px] px-[3px] pb-[3px] border border-gray-200 hover:border-amber-100'>
+                <div>
                 {isLoggedIn ? (
-                    <button onClick={handleSignOut} className="text-center mx-[8px] text-[12px] text-gray-200 hover:text-amber-100">
+                    <button onClick={handleSignOut} className="m-[5px] px-4 py-1 border border-gray-400 hover:bg-gray-400 hover:text-white text-center text-[12px] text-gray-400 hover:text-white">
                         Sign-Out
                     </button>
                 ) : (
-                    <button  onClick={handleSignIn} className="text-center mx-[8px] text-[12px] text-gray-200 hover:text-amber-100">
+                    <button  onClick={handleSignIn} className="m-[5px] px-4 pb-1 border border-gray-400 hover:bg-gray-400 hover:text-white text-cente  text-[12px] text-gray-400 hover:text-white">
                         Sign-In
                     </button>
                 )}

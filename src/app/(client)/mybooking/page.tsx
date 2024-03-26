@@ -110,55 +110,49 @@ function MyBookingPage() {
   }
 
   return (
-    <>
-            <>
-              <div className='pb-10'>
+    <div className='h-[90vh] w-full mt-[10vh]'>
                 <div className='container mx-auto lg:w-1/2 min-h-screen px-10 lg:px-0 pt-10'>
-                  <p className='text-center text-emerald-900 text-2xl font-bold py-4'>Booking History</p>
+                  <p className='text-center text-gray-600 text-[48px] py-4'>Booking History</p>
 
                   {
                     bookingList.length === 0 ? (
-                      <div className="border p-4 px-8 mt-4 rounded-xl hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 bg-white block text-center lg:flex lg:justify-between animate-fade-up">
+                      <div className="border border-gray-200 p-4 px-8 mt-4  hover:bg-gray-100  bg-white block text-left">
                         <p className='font-semibold mt-1'>Booking in history is empty.</p>
-                        <a className="btn btn-sm btn-accent text-sky-600 mt-4 lg:mt-0" href="/campground">make new booking</a>
+                        <button className="hover:bg-gray-400 hover:text-white text-gray-400 my-2 py-1 px-4 border border-gray-400" onClick={(e)=>{e.stopPropagation; router.push("/campground")}}>make new booking</button>
                       </div>
                     ) : ''
                   }
 
                   {bookingList.map((booking) => (
-                    <div key={booking._id} className='border p-4 mt-4 rounded-xl hover:shadow-lg transition duration-300 
-                    ease-in-out transform hover:scale-105 bg-white animate-fade-up animate-once'>
-                      <h2 className='font-bold text-lg'>{booking.campground.name}</h2>
-                      <p className='text-gray-600 my-2'>
-                        <LocationOnIcon className='text-teal-400' /> {booking.campground.address}
+                    <div key={booking._id} className="border border-gray-200 p-4 px-8 mt-4  hover:bg-gray-100  bg-white block text-left">
+                      <h2 className='text-gray-600 text-lg'>{booking.campground.name}</h2>
+                      <p className='text-gray-400 my-2'>
+                        <LocationOnIcon className='text-gray-400' /> {booking.campground.address}
                       </p>
-                      <p className='text-gray-600 my-2'>
-                        <LocalPhoneIcon className='text-teal-400' /> {booking.campground.telephoneNumber}
+                      <p className='text-gray-400 my-2'>
+                        <LocalPhoneIcon className='text-gray-400' /> {booking.campground.telephoneNumber}
                       </p>
-                      <p className='text-gray-600 my-2'>
-                        <CalendarMonthIcon className='text-teal-400' /> {formatDate(booking.bookingDate)}
+                      <p className='text-gray-400 my-2'>
+                        <CalendarMonthIcon className='text-gray-400' /> {formatDate(booking.bookingDate)}
                       </p>
                       {
                         user.role === "admin" ?
-                          <p className='text-gray-600 my-2'>
-                            <PersonIcon className='text-teal-400' /> {booking.user}
+                          <p className='text-gray-400 my-2'>
+                            <PersonIcon className='text-gray-400' /> {booking.user}
                           </p>
                           : ''
                       }
-                      <button className='text-sky-600 btn btn-accent btn-sm rounded-md mt-2 mr-4'
+                      <button className="hover:bg-gray-400 hover:text-white text-gray-400 m-2 py-1 px-4 border border-gray-400"
                         onClick={() => handleEditClick(booking._id)}
                       >Edit</button>
 
-                      <button className='text-sky-600 btn btn-error btn-sm btn-outline rounded-md mt-2'
+                      <button className="hover:bg-gray-400 hover:text-white text-gray-400 m-2 py-1 px-4 border border-gray-400"
                         onClick={() => handleDelete(booking._id)}
                       >Delete</button>
                     </div>
                   ))}
                 </div>
-              </div>
-            </>
-        
-    </>
+    </div>
   );
 }
 

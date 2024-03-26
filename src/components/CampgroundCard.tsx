@@ -9,34 +9,27 @@ interface CardProps {
     imgSrc: string;
     province: string;
     country:string;
-    initialRating: number;
 }
 
-export default function Card({ campgroundName, imgSrc, province, country,initialRating}: CardProps) {
+export default function Card({ campgroundName, imgSrc, province, country}: CardProps) {
 
     return (
         <InteractiveCard>
-            <div className='w-full h-[70%] relative rounded-t-lg'>
+            <div className='w-full h-[80%] relative'>
                 <Image
                     src={imgSrc}
                     alt='Campground Picture'
                     fill={true}
-                    className='object-cover rounded-t-lg'
+                    className='object-cover'
                 />
             </div>
-            <div className='w-full h-[10%] p-[10px] text-gray-700 font-medium text-center'>
-                {campgroundName}
-            </div>
-            <div className='w-full h-[10%] p-[10px] text-gray-700 font-medium text-center'>
-                {province}, {country}
-            </div>
-            <div className='w-full h-[10%] p-[10px] flex justify-center items-center'>
-                <Rating
-                    id={campgroundName + ' Rating'}
-                    name={campgroundName + ' Rating'}
-                    data-testid={campgroundName + ' Rating'}
-                    value={initialRating}
-                ></Rating>
+            <div className='w-full h-[20%] p-[10px] text-gray-500  text-left p-8'>
+                <div className='text-md'>
+                    {campgroundName}    
+                </div>
+                <div className='text-[12px]'>
+                    {province}, {country}
+                </div>
             </div>
         </InteractiveCard>
     );

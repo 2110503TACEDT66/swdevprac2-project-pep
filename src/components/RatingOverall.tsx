@@ -33,14 +33,9 @@ export default function RatingOverall({ reviewJson, cid }: { reviewJson: { count
         setShowReviewForm(false);
     };
 
-    const handleReviewSubmit = () => {
-        // Handle any logic after review submission if needed
-        handleCloseReviewForm();
-    };
-
     return (
         <div className="h-[60%] w-full p-2 ">
-            <div className="h-[45%] w-full bg-white text-center px-48 pt-12">
+            <div className="h-[45%] w-full bg-white text-gray-500 text-center px-48 pt-[10vh]">
                 <p className="text-lg mb-2">
                     We're here to make your outdoor adventure unforgettable. Whether you're a seasoned camper or new to camping, our peaceful surroundings and great facilities have everything you need for a fantastic experience.
                 </p>
@@ -64,7 +59,7 @@ export default function RatingOverall({ reviewJson, cid }: { reviewJson: { count
                                 {index + 1}
                             </div>
 
-                            <div className="h-3 w-[50%] bg-gray-200 rounded-full overflow-hidden">
+                            <div className="h-3 w-[50%] bg-gray-100 rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-gray-400"
                                     style={{ width: `${level}%` }}
@@ -76,13 +71,13 @@ export default function RatingOverall({ reviewJson, cid }: { reviewJson: { count
             </div>
 
             <div className="h-[15%] w-full mt-4 flex flex-row justify-center bg-white">
-                <button onClick={handleCreateReview} className=" h-[40px] hover:bg-gray-400 hover:text-white text-gray-400 font-bold py-1 px-4 border-2 border-gray-400">
+                <button onClick={handleCreateReview} className=" h-[40px] hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400">
                     Create Review
                 </button>
             </div>
 
             {showReviewForm && (
-                <ReviewForm params={{ cid: cid }} onClose={handleCloseReviewForm} onSubmit={handleReviewSubmit} />
+                <ReviewForm params={{ cid: cid }} onClose={handleCloseReviewForm}/>
             )}
         </div>
     );

@@ -11,12 +11,15 @@ export default function ReviewCatalog({reviewJson}:
     }) {
 
     return(
-        <div className="h-[40%] bg-gray-200 px-48 flex flex-col overflow-clip overflow-y-scroll">
+        <div className='h-[40%] px-12 pb-8 flex justify-center'>
+            <div className="h-[100%] bg-white w-[70%] flex flex-col overflow-clip overflow-y-scroll">
                 {
                 reviewJson.data.map((reviewItem:any)=>(
                     <ReviewCard user={reviewItem.user} rating={reviewItem.rating} review={reviewItem.review}/>
                 ))
             }
+            </div>
         </div>
+        
     );
 }

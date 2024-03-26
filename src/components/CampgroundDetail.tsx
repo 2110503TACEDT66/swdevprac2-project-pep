@@ -5,22 +5,25 @@ import Link from "next/link"
 export default async function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }){
     
     return (
-        <div className='bg-cyan-900 justify-between items-center p-0 m-0 w-screen h-[95vh]'>
-            <div className="flex flex-row p-[20px] text-white">
-                <Image src={campgroundDetail.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="rounded-lg w-[30%]"></Image>
-                <div className="text-[20px] mx-5 text-left">{campgroundDetail.name}
-                    <div className="text-[16px] mx-5">Description: {campgroundDetail.description}</div>
-                    <div className="text-[16px] mx-5">Address: {campgroundDetail.address}</div>
-                    <div className="text-[16px] mx-5">Province: {campgroundDetail.province}</div>
-                    <div className="text-[16px] mx-5">Postal Code: {campgroundDetail.postalcode}</div>
-                    <div className="text-[16px] mx-5">Telephone: {campgroundDetail.telephoneNumber}</div>
-                </div>
-                <Link href={`/booking/${campgroundDetail._id}`}>
-                        <button className="block rounded-md bg-sky-600 hover:bg-sky-800 text-white px-3 py-2 shadow-sm">
-                            Make reservation
+        <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
+            <div className="flex flex-row px-12 py-8 text-white">
+                <Image src={campgroundDetail.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-[30%]"></Image>
+                <div className="w-[70%] text-gray-400 pt-[10%] px-5 text-left">
+                    
+                    <div className="text-[48px]  text-gray-600 ">{campgroundDetail.name}</div>
+                    <div className="text-[18px] text-gray-500">{campgroundDetail.description}</div>
+                    <div className="text-[16px]  mt-12">{campgroundDetail.address} {campgroundDetail.province}</div>
+                    <div className="text-[16px] ">postal code : {campgroundDetail.postalcode}</div>
+                    <div className="text-[16px]  mb-12">phone : {campgroundDetail.telephoneNumber}</div>
+
+
+                    <Link href={`/booking/${campgroundDetail._id}`} className="mt-4  justify-center bg-white">
+                        <button className="hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400">
+                            Make Booking
                         </button>
                     
-                </Link>
+                    </Link>
+                </div>
             </div>
         </div>
     )
