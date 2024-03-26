@@ -1,9 +1,7 @@
 'use client'
 import Image from 'next/image';
 import InteractiveCard from './InteractiveCard';
-import { Rating } from '@mui/material';
 import React from 'react';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 interface CardProps {
     campgroundName: string;
