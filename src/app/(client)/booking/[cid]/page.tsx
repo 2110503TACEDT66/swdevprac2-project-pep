@@ -13,6 +13,7 @@ import getCampground from '@/libs/getCampground';
 import { CampgroundItem } from '../../../../../interface';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import Image from 'next/image';
 
 
 function BookingPage({params}:{params:{cid:string}}) {
@@ -95,27 +96,24 @@ function BookingPage({params}:{params:{cid:string}}) {
     };
 
     return (
-        <>
-            
-            <div className='container min-h-screen py-10 lg:py-20 px-10 md:px-0 mx-auto lg:w-1/3 animate-fade-up'>
-                <p className='font-bold text-3xl text-center pt-6 text-emerald-900'>Campground</p>
-                <div className='border p-4 my-4 rounded-xl  transition duration-300 ease-in-out transform  bg-white'>
-                    <h2 className='font-bold text-lg'>{campground.name}</h2>
-                    <p className='text-gray-600 my-2'>
-                        <LocationOnIcon className='text-teal-400' /> {campground.address}, {campground.province}, {campground.country}
-                    </p>
-                    <p className='text-gray-600 my-2'>
-                        <LocalPhoneIcon className='text-teal-400' /> {campground.telephoneNumber}
-                    </p>
-                    
-                </div>
+        <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
+            <div className="flex flex-row px-12">
+                <Image src={campground.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-[30%]"></Image>
 
-                <div className="card shadow-2xl bg-base-100 my-8">
-                    <p className='font-bold text-2xl text-center pt-6 text-emerald-900'>Booking Form</p>
+                <div className="w-[70%] text-gray-400 pt-[5%] px-5 text-left">
+                    <p className='text-[48px] pt-6 text-gray-600'>Book Your Rest</p>
+                        
+                    <div>
+                        <h2 className='text-[18px] text-gray-500'>{campground.name}</h2>
+                        <div className="text-[16px]  mt-12">{campground.address} {campground.province}</div>
+                        <div className="text-[16px] ">postal code : {campground.postalcode}</div>
+                        <div className="text-[16px]  mb-12">phone : {campground.telephoneNumber}</div>        
+                    </div>
+                  
                     <form className="card-body">
                         <FormControl>
                             <label className="label">
-                                <span className='label-text'>Date</span>
+                            <span className='label-text text-[16px]'>Book Date</span>
                             </label>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker
@@ -125,14 +123,13 @@ function BookingPage({params}:{params:{cid:string}}) {
                             </LocalizationProvider>
                         </FormControl>
                         <div className="form-control mt-6">
-                            <button className="btn btn-outline btn-success" type="button" onClick={handleBooking}>Confirm</button>
+                            <button className="hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400" type="button" onClick={handleBooking}>Confirm</button>
                         </div>
-                    </form>
+                    </form>            
                 </div>
             </div>
-                )
+        </div>
             
-        </>
     );
 }
 

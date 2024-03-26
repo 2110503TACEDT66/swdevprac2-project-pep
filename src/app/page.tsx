@@ -6,7 +6,7 @@ import TopMenu from "@/components/TopMenu"
 
 export default function Home() {
   return (
-    <div className='w-screen'>
+    <div className='h-100% w-full'>
       <TopMenu/>
       <Banner></Banner>
     </div>

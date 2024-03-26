@@ -9,20 +9,18 @@ export default function CampgroundCatalog({campgroundJson}:{campgroundJson:{coun
     picture: string}[]}}){
 
     return(
-        <div className='bg-slate-200 h-screen'>
-            <div className='p-[40px] flex flex-col justify-around items-around'>
-                <div className='flex flex-row justify-start space-x-10 overflow overflow-x-auto'>
-                    {
-                    campgroundJson.data.map((campgroundItem:any)=>(
-                        <Link href={`/campground/${campgroundItem._id}`} className='w-[300px]'>
-                            <CampgroundCard campgroundName={campgroundItem.name} imgSrc={campgroundItem.picture} 
-                            province={campgroundItem.province} country={campgroundItem.country} initialRating={0}/>
-                        </Link>
+        <div className='bg-white h-[100%] pt-[20px] px-12 '>
+           <div className='h-full flex flex-row  space-x-5 overflow overflow-x-scroll'>
+                {
+                campgroundJson.data.map((campgroundItem:any)=>(
+                    <Link href={`/campground/${campgroundItem._id}`} className='w-[350px]'>
+                        <CampgroundCard campgroundName={campgroundItem.name} imgSrc={campgroundItem.picture} 
+                        province={campgroundItem.province} country={campgroundItem.country}/> 
+                    </Link>
 
-                    ))
+                ))
                 }
-                </div>
-            </div>
+           </div>
         </div>
     );
 }

@@ -13,13 +13,33 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PersonIcon from '@mui/icons-material/Person';
 import { useRouter } from 'next/navigation';
-import { BookingItem,UserRole,BookingJSON, UserJSON } from '../../../../../../interface';
+import { UserRole, UserJSON, CampgroundItem } from '../../../../../../interface';
+import getCampground from '@/libs/getCampground';
+import Image from 'next/image';
+
+export interface BookingItem {
+    campground: {
+        _id:string;
+      address: string;
+      name: string;
+      telephoneNumber: string;
+    };
+    user: string
+    bookingDate: string;
+    _id: string;
+  }
+  
+  export interface BookingJSON {
+    success: boolean;
+    data: BookingItem;
+  }
 
 
 function EditBookingPage({ params }: {params:{bid:string}}) {
     const [user, setUser] = useState<UserRole>(Object);
     const [booking, setBooking] = useState<BookingItem>({
         campground: {
+            _id:"",
             address: "",
             name: "",
             telephoneNumber: "",
@@ -118,52 +138,38 @@ function EditBookingPage({ params }: {params:{bid:string}}) {
     };
 
     return (
-        <>
-            
-            <div className='container min-h-screen py-10 lg:py-20 px-10 md:px-0 mx-auto lg:w-1/3 animate-fade-up'>
-                <p className='font-bold text-3xl text-center pt-6 text-emerald-900'>Target Booking</p>
-                <div className='border p-4 mt-4 rounded-xl hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 bg-white'>
-                    <h2 className='font-bold text-lg'>{booking.campground.name}</h2>
-                    <p className='text-gray-600 my-2'>
-                        <LocationOnIcon className='text-teal-400' /> {booking.campground.address}
-                    </p>
-                    <p className='text-gray-600 my-2'>
-                        <LocalPhoneIcon className='text-teal-400' /> {booking.campground.telephoneNumber}
-                    </p>
-                    <p className='text-gray-600 my-2'>
-                        <CalendarMonthIcon className='text-teal-400' /> {formatDate(booking.bookingDate)}
-                    </p>
-                    {
-                        user.role === "admin" ?
-                            <p className='text-gray-600 my-2'>
-                                <PersonIcon className='text-teal-400' /> {booking.user}
-                            </p>
-                            : ''
-                    }
-                </div>
+        <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
+        <div className="flex flex-row px-12">
+            <div className='w-[40%]'></div>
 
-                <div className="card shadow-2xl bg-base-100 my-8">
-                    <p className='font-bold text-2xl text-center pt-6 text-emerald-900'>Booking Form</p>
-                    <form className="card-body">
-                        <FormControl>
-                            <label className="label">
-                                <span className='label-text'>Date</span>
-                            </label>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker
-                                    value={date}
-                                    onChange={handleDateChange}
-                                />
-                            </LocalizationProvider>
-                        </FormControl>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-outline btn-success" type="button" onClick={handleBooking}>Confirm</button>
-                        </div>
-                    </form>
+            <div className="w-[60%] text-gray-400 pt-[5%] px-5 text-left">
+                <p className='text-[48px] pt-6 text-gray-600'> Your Rest</p>
+                    
+                <div>
+                    <h2 className='text-[18px] text-gray-500'>{booking.campground.name}</h2>
+                    <div className="text-[16px]  mt-12">{booking.campground.address}</div>
+                    <p className="text-[16px]  mb-12"><LocalPhoneIcon/> {booking.campground.telephoneNumber}</p>        
                 </div>
+              
+                <form className="card-body">
+                    <FormControl>
+                        <label className="label">
+                        <span className='label-text text-[16px]'>Book Date</span>
+                        </label>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
+                                value={date}
+                                onChange={handleDateChange}
+                            />
+                        </LocalizationProvider>
+                    </FormControl>
+                    <div className="form-control mt-6">
+                        <button className="hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400" type="button" onClick={handleBooking}>Confirm</button>
+                    </div>
+                </form>            
             </div>
-                
-        </>
+        </div>
+    </div>
     );
 }
 

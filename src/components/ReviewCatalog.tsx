@@ -26,11 +26,9 @@ export default function ReviewCatalog({ reviewJson, currentUser}: ReviewCatalogP
             console.error("Error deleting review:", error);
         }
     };
-
-
-    return (
-        <div className="h-screen m-[20px] bg-indigo-200">
-            <div className="h-[50%] px-48 flex flex-col overflow-clip overflow-y-scroll">
+    return(
+        <div className='h-[40%] px-12 pb-8 flex justify-center'>
+            <div className="h-[100%] bg-white w-[70%] flex flex-col overflow-clip overflow-y-scroll">
                 {reviewJson.data.map((reviewItem: ReviewItem) => (
                     <ReviewCard
                         key={reviewItem._id}

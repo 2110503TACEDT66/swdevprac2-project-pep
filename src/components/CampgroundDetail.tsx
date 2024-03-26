@@ -1,85 +1,34 @@
-// import Image from "next/image"
-// import Link from "next/link"
-// import LocationOnIcon from '@mui/icons-material/LocationOn';
-// import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-// import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
-// import RatingOverall from "./RatingOverall";
+import Image from "next/image"
+import getCampground from "@/libs/getCampground"
+import Link from "next/link"
 
-// export default async function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }) {
+export default function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }){
 
-//     return (
-//         <div className='bg-cyan-900 justify-between items-center p-0 m-0 h-[95vh]'>
-//             <div className="flex flex-row text-white">
-//                     <div className="h-[95vh] w-[55vw] relative">
-//                         <Image src={campgroundDetail.picture} alt="Campground Image" layout="fill" objectFit="cover" />
-//                     </div>
-                
-//                 <div className="flex-1 mx-5 text-left">
-//                     <div className="text-3xl font-bold my-3">{campgroundDetail.name}</div>
-//                     <div className="text-[16px] my-3">{campgroundDetail.description}</div>
-//                     <p className="text-[16px] my-3 flex items-center">
-//                         <LocationOnIcon className="mr-1" />{campgroundDetail.address}, {campgroundDetail.province}
-//                     </p>
-//                     <p className="text-[16px] my-3 flex items-center">
-//                         <LocalPostOfficeIcon className="mr-1" />{campgroundDetail.postalcode}
-//                     </p>
-//                     <p className="text-[16px] my-3 flex items-center">
-//                         <LocalPhoneIcon className="mr-1" />{campgroundDetail.telephoneNumber}
-//                     </p>
-//                     <Link href={`/booking/${campgroundDetail._id}`}>
-//                         <button className="block bg-sky-600 hover:bg-sky-800 text-white px-3 py-2 shadow-sm mt-4">
-//                             Make Booking
-//                         </button>
-//                     </Link>
-                    
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
-
-export default function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }) {
     if (!campgroundDetail) {
         return null;
     }
-
+    
     return (
-        <div className='bg-cyan-900 justify-between items-center p-0 m-0 h-[95vh]'>
-            <div className="flex flex-row text-white">
-                <div className="h-[95vh] w-[55vw] relative">
-                    {campgroundDetail.picture && (
-                        <Image src={campgroundDetail.picture} alt="Campground Image" layout="fill" objectFit="cover" />
-                    )}
-                </div>
+        <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
+            <div className="flex flex-row px-12 py-8 text-white">
+                <Image src={campgroundDetail.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-[30%]"></Image>
+                <div className="w-[70%] text-gray-400 pt-[10%] px-5 text-left">
+                    
+                    <div className="text-[48px]  text-gray-600 ">{campgroundDetail.name}</div>
+                    <div className="text-[18px] text-gray-500">{campgroundDetail.description}</div>
+                    <div className="text-[16px]  mt-12">{campgroundDetail.address} {campgroundDetail.province}</div>
+                    <div className="text-[16px] ">postal code : {campgroundDetail.postalcode}</div>
+                    <div className="text-[16px]  mb-12">phone : {campgroundDetail.telephoneNumber}</div>
 
-                <div className="flex-1 mx-5 text-left">
-                    <div className="text-3xl font-bold my-3">{campgroundDetail.name}</div>
-                    <div className="text-[16px] my-3">{campgroundDetail.description}</div>
-                    <p className="text-[16px] my-3 flex items-center">
-                        <LocationOnIcon className="mr-1" />{campgroundDetail.address}, {campgroundDetail.province}
-                    </p>
-                    <p className="text-[16px] my-3 flex items-center">
-                        <LocalPostOfficeIcon className="mr-1" />{campgroundDetail.postalcode}
-                    </p>
-                    <p className="text-[16px] my-3 flex items-center">
-                        <LocalPhoneIcon className="mr-1" />{campgroundDetail.telephoneNumber}
-                    </p>
-                    <Link href={`/booking/${campgroundDetail._id}`}>
-                        <button className="block bg-sky-600 hover:bg-sky-800 text-white px-3 py-2 shadow-sm mt-4">
+
+                    <Link href={`/booking/${campgroundDetail._id}`} className="mt-4  justify-center bg-white">
+                        <button className="hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400">
                             Make Booking
                         </button>
+                    
                     </Link>
                 </div>
             </div>
         </div>
-    );
+    )
 }
-
-
