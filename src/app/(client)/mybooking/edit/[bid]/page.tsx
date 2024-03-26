@@ -140,10 +140,10 @@ function EditBookingPage({ params }: {params:{bid:string}}) {
     return (
         <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
         <div className="flex flex-row px-12">
-            <div className='w-[40%]'></div>
+            <div className='md:w-[40%]'></div>
 
-            <div className="w-[60%] text-gray-400 pt-[5%] px-5 text-left">
-                <p className='text-[48px] pt-6 text-gray-600'> Your Rest</p>
+            <div className="md:w-[60%] text-gray-400 pt-[5%] px-5 text-left">
+                <p className='text-[36px] md:text-[48px] pt-6 text-gray-600'> Your Rest</p>
                     
                 <div>
                     <h2 className='text-[18px] text-gray-500'>{booking.campground.name}</h2>

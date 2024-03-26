@@ -97,11 +97,11 @@ function BookingPage({params}:{params:{cid:string}}) {
 
     return (
         <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
-            <div className="flex flex-row px-12">
-                <Image src={campground.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-[30%]"></Image>
+            <div className="flex flex-col md:flex-row px-12">
+                <Image src={campground.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-full h-[30vh] md:w-[30%] md:h-auto"></Image>
 
-                <div className="w-[70%] text-gray-400 pt-[5%] px-5 text-left">
-                    <p className='text-[48px] pt-6 text-gray-600'>Book Your Rest</p>
+                <div className="md:w-[70%] md:h-auto text-gray-400 pt-[5%] md:px-5 text-left">
+                    <p className='text-[36px] md:text-[48px] pt-6 text-gray-600'>Book Your Rest</p>
                         
                     <div>
                         <h2 className='text-[18px] text-gray-500'>{campground.name}</h2>

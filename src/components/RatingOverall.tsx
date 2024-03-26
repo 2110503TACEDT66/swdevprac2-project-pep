@@ -43,12 +43,12 @@ export default function RatingOverall({ reviewJson, cid }: { reviewJson: { count
     }
 
     return (
-        <div className="h-[60%] w-full p-2 ">
-            <div className="h-[45%] w-full bg-white text-gray-500 text-center px-48 pt-[10vh]">
-                <p className="text-lg mb-2">
+        <div className="md:h-[60%] w-full p-2 ">
+            <div className="md:h-[45%] w-full bg-white text-gray-500 text-center px-12 md:px-48 pt-[10vh]">
+                <p className="text-md md:text-lg mb-2">
                     We're here to make your outdoor adventure unforgettable. Whether you're a seasoned camper or new to camping, our peaceful surroundings and great facilities have everything you need for a fantastic experience.
                 </p>
-                <p className="text-lg text-black mb-6">
+                <p className="text-md md:text-lg mb-6">
                     Want to hear from other campers? Dive into our reviews below to learn about their experiences and discover why our campground is so special.
                 </p>
             </div>

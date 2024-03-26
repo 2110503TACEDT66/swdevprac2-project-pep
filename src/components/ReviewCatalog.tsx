@@ -28,7 +28,7 @@ export default function ReviewCatalog({ reviewJson, currentUser}: ReviewCatalogP
     };
     return(
         <div className='h-[40%] px-12 pb-8 flex justify-center'>
-            <div className="h-[100%] bg-white w-[70%] flex flex-col overflow-clip overflow-y-scroll">
+            <div className="h-[100%] bg-white md:w-[70%] flex flex-col overflow-clip overflow-y-scroll">
                 {reviewJson.data.map((reviewItem: ReviewItem) => (
                     <ReviewCard
                         key={reviewItem._id}

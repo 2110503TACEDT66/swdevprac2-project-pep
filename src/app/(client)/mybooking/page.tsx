@@ -125,7 +125,7 @@ function MyBookingPage() {
   return (
     <div className='h-[90vh] w-full mt-[10vh]'>
                 <div className='container mx-auto lg:w-1/2 min-h-screen px-10 lg:px-0 pt-10'>
-                  <p className='text-center text-gray-600 text-[48px] py-4'>Booking History</p>
+                  <p className='text-center text-gray-600 text-[36px] md:text-[48px] py-4'>Booking History</p>
 
                   {
                     bookingList.length === 0 ? (

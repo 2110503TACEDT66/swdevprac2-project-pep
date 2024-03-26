@@ -67,11 +67,11 @@ export default function TopMenu(){
                 <div>
                 {isLoggedIn ? (
                     <button onClick={handleSignOut} className="m-[5px] px-4 py-1 border border-gray-400 hover:bg-gray-400 hover:text-white text-center text-[12px] text-gray-400 hover:text-white">
-                        Sign-Out
+                        Sign Out
                     </button>
                 ) : (
                     <button  onClick={handleSignIn} className="m-[5px] px-4 py-1 border border-gray-400 hover:bg-gray-400 hover:text-white text-cente  text-[12px] text-gray-400 hover:text-white">
-                        Sign-In
+                        Sign In
                     </button>
                 )}
                 </div>

@@ -12,8 +12,8 @@ export default function Banner() {
             />
 
             <Link href={'/campground'}> 
-                <div className = 'relative top-[60%]  right-[48px] z-20 text-end'>
-                    <div className = 'text-2xl text-gray-500 hover:text-gray-700 '>
+                <div className = 'relative z-20 top-[50%] text-center md:top-[60%] md:right-[48px] md:text-end'>
+                    <div className = 'text-md md:text-2xl text-gray-500 hover:text-gray-700 '>
                         Discover the meaning of rest once again {'->'}
                     </div>    
                 </div>

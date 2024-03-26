@@ -10,11 +10,11 @@ export default function CampgroundDetail({ campgroundDetail }: { campgroundDetai
     
     return (
         <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
-            <div className="flex flex-row px-12 py-8 text-white">
-                <Image src={campgroundDetail.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-[30%]"></Image>
-                <div className="w-[70%] text-gray-400 pt-[10%] px-5 text-left">
+            <div className="flex flex-col md:flex-row px-12 py-8 text-white">
+                <Image src={campgroundDetail.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="h-[40vh] w-full md:w-[30%] md:h-auto"></Image>
+                <div className="w-full md:w-[70%] text-gray-400 pt-[10%] md:px-5 text-left">
                     
-                    <div className="text-[48px]  text-gray-600 ">{campgroundDetail.name}</div>
+                    <div className="text-[25px] md:text-[48px] text-gray-600 ">{campgroundDetail.name}</div>
                     <div className="text-[18px] text-gray-500">{campgroundDetail.description}</div>
                     <div className="text-[16px]  mt-12">{campgroundDetail.address} {campgroundDetail.province}</div>
                     <div className="text-[16px] ">postal code : {campgroundDetail.postalcode}</div>
