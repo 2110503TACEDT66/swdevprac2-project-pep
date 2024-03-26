@@ -53,45 +53,40 @@ function SignUpForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Name:</label>
-        <input 
-          type="text" 
-          value={name} 
-          onChange={(e) => setName(e.target.value)} 
-          required 
-        />
+    <div className='flex flex-col md:flex-row'>
+      <div className='w-full md:w-[40vw] p-[30px] flex flex-col justify-center'>
+      <div className='text-[35px] text-gray-500'>Unlock a world of possibilities.</div>
+      <div className='text-[25px] text-gray-400'>Sign up today and begin your journey !</div>
+        <form onSubmit={handleSubmit} className='py-[15px] text-gray-500'>
+          <div className='my-[10px]'>
+            <div>Name</div>
+            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required
+            className='bg-gray-100 px-4 py-3 w-full focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500'
+            ></input>
+          </div>
+          <div className='my-[10px]'>
+            <div>Telephone Number</div>
+            <input type="telephoneNumber" placeholder="Telephone Number" value={telephoneNumber} onChange={(e) => setTelephoneNumber(e.target.value)} required
+            className='bg-gray-100 px-4 py-3 w-full focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500'
+            ></input>
+          </div>
+          <div className='my-[10px]'>
+            <div>Email</div>
+            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required
+            className='bg-gray-100 px-4 py-3 w-full focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500'
+            ></input>
+          </div>
+          <div className='my-[10px]'>
+            <div>Password</div>
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required
+            className='bg-gray-100 px-4 py-3 w-full focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500'
+            ></input>
+          </div>
+          <button type="submit" className='border border-gray-400 mt-[10px] bg-white hover:bg-gray-400 px-4 py-2 text-gray-400 hover:text-white'>Sign Up</button>
+        </form>
       </div>
-      <div>
-        <label>Email:</label>
-        <input 
-          type="email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input 
-          type="password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-        />
-      </div>
-      <div>
-        <label>Telephone Number:</label>
-        <input 
-          type="telephoneNumber" 
-          value={telephoneNumber} 
-          onChange={(e) => setTelephoneNumber(e.target.value)} 
-          required 
-        />
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+      <img src="img/signup.jpg" alt="Sign Up" className='md:w-[60vw] md:h-[90vh]' />
+    </div>
   );
 }
 

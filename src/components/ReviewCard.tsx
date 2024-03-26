@@ -110,24 +110,21 @@ export default function ReviewCard({ _id, user, rating, review, allowDelete, onD
       }
 
     return (
-        <div className="w-full bg-white p-4 rounded-sm mt-2 flex">
+        <div className="w-full bg-gray-100 p-4 mt-2 flex">
             <div className="flex-none mr-4">
                 <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
             </div>
             <div className="flex-grow">
                 <div className="flex items-center justify-between mb-2">
-                    <div>
-                        <div className="font-bold">{user}</div>
-                        <div className="flex items-center">
-                            <Rating name="read-only" value={rating} readOnly />
-                            <span className="text-sm text-gray-500 ml-1">{rating}</span>
-                        </div>
+                <div>
+                    <div className="text-md text-gray-500">{user}</div>
+                    <div className="flex items-center">
+                        <Rating name="read-only" value={rating} readOnly />
+                    <span className="text-sm text-gray-500 ml-1">{rating}</span>
                     </div>
-                    {(userRole.role === "admin" || allowDelete) && (
-                        <button className='text-black btn btn-error btn-sm btn-outline rounded-md mt-2' onClick={handleDelete}>Delete</button>
-                    )}
                 </div>
-                <div className="text-gray-700 mt-2">{review}</div>
+            </div>
+                <div className="text-sm text-gray-500 mt-2">{review}</div>
             </div>
         </div>
     );
