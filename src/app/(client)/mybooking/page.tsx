@@ -10,6 +10,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import { BookingItem,UserRole,BookingListJSON, UserJSON, DeleteJSON } from '../../../../interface';
+import Loading from '@/components/Loading';
 
 function MyBookingPage() {
   const [bookingList, setBookingList] = useState<BookingItem[]>([{
@@ -23,10 +24,11 @@ function MyBookingPage() {
     _id: ""
   }]);
   const [user, setUser] = useState<UserRole>(Object);
-
+  const [loading, setLoading] = useState<boolean>(true)
   const router = useRouter();
 
   useEffect(() => {
+    setLoading(true)
     fetchData();
     fetchUserRole();
   }, []);
@@ -36,6 +38,7 @@ function MyBookingPage() {
       const response = await axios.get<BookingListJSON>(`${config.api}/bookings`, config.headers());
       if (response.data.success === true) {
         setBookingList(response.data.data);
+        setLoading(false)
       }
     } catch (err: any) {
       console.log(err.message);
@@ -47,6 +50,7 @@ function MyBookingPage() {
       const response = await axios.get<UserJSON>(`${config.api}/auth/me`, config.headers());
       if (response.data.success === true) {
         setUser(response.data.data)
+        setLoading(false)
 
       } else {
         throw new Error(response.data.message)
@@ -123,49 +127,58 @@ function MyBookingPage() {
   }
 
   return (
-    <div className='h-[90vh] w-full mt-[10vh]'>
-                <div className='container mx-auto lg:w-1/2 min-h-screen px-10 lg:px-0 pt-10'>
-                  <p className='text-center text-gray-600 text-[48px] py-4'>Booking History</p>
+    <>
+    {
+      loading?(
+        <Loading/>
+      ):(
+        <div className='h-[90vh] w-full mt-[10vh]'>
+          <div className='container mx-auto lg:w-1/2 min-h-screen px-10 lg:px-0 pt-10'>
+            <p className='text-center text-gray-600 text-[48px] py-4'>Booking History</p>
 
-                  {
-                    bookingList.length === 0 ? (
-                      <div className="border border-gray-200 p-4 px-8 mt-4  hover:bg-gray-100  bg-white block text-left">
-                        <p className='font-semibold mt-1'>Booking in history is empty.</p>
-                        <button className="hover:bg-gray-400 hover:text-white text-gray-400 my-2 py-1 px-4 border border-gray-400" onClick={(e)=>{e.stopPropagation; router.push("/campground")}}>make new booking</button>
-                      </div>
-                    ) : ''
-                  }
-
-                  {bookingList.map((booking) => (
-                    <div key={booking._id} className="border border-gray-200 p-4 px-8 mt-4  hover:bg-gray-100  bg-white block text-left">
-                      <h2 className='text-gray-600 text-lg'>{booking.campground.name}</h2>
-                      <p className='text-gray-400 my-2'>
-                        <LocationOnIcon className='text-gray-400' /> {booking.campground.address}
-                      </p>
-                      <p className='text-gray-400 my-2'>
-                        <LocalPhoneIcon className='text-gray-400' /> {booking.campground.telephoneNumber}
-                      </p>
-                      <p className='text-gray-400 my-2'>
-                        <CalendarMonthIcon className='text-gray-400' /> {formatDate(booking.bookingDate)}
-                      </p>
-                      {
-                        user.role === "admin" ?
-                          <p className='text-gray-400 my-2'>
-                            <PersonIcon className='text-gray-400' /> {booking.user}
-                          </p>
-                          : ''
-                      }
-                      <button className="hover:bg-gray-400 hover:text-white text-gray-400 m-2 py-1 px-4 border border-gray-400"
-                        onClick={() => handleEditClick(booking._id)}
-                      >Edit</button>
-
-                      <button className="hover:bg-gray-400 hover:text-white text-gray-400 m-2 py-1 px-4 border border-gray-400"
-                        onClick={() => handleDelete(booking._id)}
-                      >Delete</button>
-                    </div>
-                  ))}
+            {
+              bookingList.length === 0 ? (
+                <div className="border border-gray-200 p-4 px-8 mt-4  hover:bg-gray-100  bg-white block text-left">
+                  <p className='font-semibold mt-1'>Booking in history is empty.</p>
+                  <button className="hover:bg-gray-400 hover:text-white text-gray-400 my-2 py-1 px-4 border border-gray-400" onClick={(e)=>{e.stopPropagation; router.push("/campground")}}>make new booking</button>
                 </div>
+              ) : ''
+            }
+
+            {bookingList.map((booking) => (
+              <div key={booking._id} className="border border-gray-200 p-4 px-8 mt-4  hover:bg-gray-100  bg-white block text-left">
+                <h2 className='text-gray-600 text-lg'>{booking.campground.name}</h2>
+                <p className='text-gray-400 my-2'>
+                  <LocationOnIcon className='text-gray-400' /> {booking.campground.address}
+                </p>
+                <p className='text-gray-400 my-2'>
+                  <LocalPhoneIcon className='text-gray-400' /> {booking.campground.telephoneNumber}
+                </p>
+                <p className='text-gray-400 my-2'>
+                  <CalendarMonthIcon className='text-gray-400' /> {formatDate(booking.bookingDate)}
+                </p>
+                {
+                  user.role === "admin" ?
+                    <p className='text-gray-400 my-2'>
+                      <PersonIcon className='text-gray-400' /> {booking.user}
+                    </p>
+                    : ''
+                }
+                <button className="hover:bg-gray-400 hover:text-white text-gray-400 m-2 py-1 px-4 border border-gray-400"
+                  onClick={() => handleEditClick(booking._id)}
+                >Edit</button>
+
+                <button className="hover:bg-gray-400 hover:text-white text-gray-400 m-2 py-1 px-4 border border-gray-400"
+                  onClick={() => handleDelete(booking._id)}
+                >Delete</button>
+              </div>
+            ))}
+          </div>
     </div>
+      )
+    }
+    </>
+    
   );
 }
 

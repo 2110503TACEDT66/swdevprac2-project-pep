@@ -4,19 +4,21 @@ import React, { useEffect, useState } from 'react';
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { FormControl, FormLabel } from '@mui/material';
+import { FormControl} from '@mui/material';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import config from '@/utils/config';
 import { useRouter } from 'next/navigation';
 import getCampground from '@/libs/getCampground';
 import { CampgroundItem } from '../../../../../interface';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import Image from 'next/image';
+import Loading from '@/components/Loading';
 
 
 function BookingPage({params}:{params:{cid:string}}) {
+    const [loading, setLoading] = useState<boolean>(true)
     const [campground, setCampground] = useState<CampgroundItem>({
         _id: '',
         name: '',
@@ -33,6 +35,7 @@ function BookingPage({params}:{params:{cid:string}}) {
     const router = useRouter()
 
     useEffect(() => {
+        setLoading(true)
         fetchData();
     }, []);
 
@@ -41,6 +44,7 @@ function BookingPage({params}:{params:{cid:string}}) {
             //const response: CampgroundJson = await getCampground(params.cid);
             const campgroundDetail = await getCampground(params.cid);
             setCampground(campgroundDetail.data);
+            setLoading(false)
         } catch (err) {
             console.log("Error: ", err);
         }
@@ -96,39 +100,48 @@ function BookingPage({params}:{params:{cid:string}}) {
     };
 
     return (
-        <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
-            <div className="flex flex-row px-12">
-                <Image src={campground.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-[30%]"></Image>
+        <>
+        {
+            loading?(
+                <Loading/>
+            ):(
+                 <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
+                    <div className="flex flex-row px-12">
+                        <Image src={campground.picture} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-[30%]"></Image>
 
-                <div className="w-[70%] text-gray-400 pt-[5%] px-5 text-left">
-                    <p className='text-[48px] pt-6 text-gray-600'>Book Your Rest</p>
+                        <div className="w-[70%] text-gray-400 pt-[5%] px-5 text-left">
+                            <p className='text-[48px] pt-6 text-gray-600'>Book Your Rest</p>
+                                
+                            <div>
+                                <h2 className='text-[18px] text-gray-500'>{campground.name}</h2>
+                                <div className="text-[16px]  mt-12">{campground.address} {campground.province}</div>
+                                <div className="text-[16px] "><LocalPostOfficeIcon/> {campground.postalcode}</div>
+                                <div className="text-[16px]  mb-12"><LocalPhoneIcon/> {campground.telephoneNumber}</div>        
+                            </div>
                         
-                    <div>
-                        <h2 className='text-[18px] text-gray-500'>{campground.name}</h2>
-                        <div className="text-[16px]  mt-12">{campground.address} {campground.province}</div>
-                        <div className="text-[16px] ">postal code : {campground.postalcode}</div>
-                        <div className="text-[16px]  mb-12">phone : {campground.telephoneNumber}</div>        
-                    </div>
-                  
-                    <form className="card-body">
-                        <FormControl>
-                            <label className="label">
-                            <span className='label-text text-[16px]'>Book Date</span>
-                            </label>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker
-                                    value={date}
-                                    onChange={handleDateChange}
-                                />
-                            </LocalizationProvider>
-                        </FormControl>
-                        <div className="form-control mt-6">
-                            <button className="hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400" type="button" onClick={handleBooking}>Confirm</button>
+                            <form className="card-body">
+                                <FormControl>
+                                    <label className="label">
+                                    <span className='label-text text-[16px]'>Book Date</span>
+                                    </label>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <DatePicker
+                                            value={date}
+                                            onChange={handleDateChange}
+                                        />
+                                    </LocalizationProvider>
+                                </FormControl>
+                                <div className="form-control mt-6">
+                                    <button className="hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400" type="button" onClick={handleBooking}>Confirm</button>
+                                </div>
+                            </form>            
                         </div>
-                    </form>            
+                    </div>
                 </div>
-            </div>
-        </div>
+            )
+        }
+        </>
+       
             
     );
 }

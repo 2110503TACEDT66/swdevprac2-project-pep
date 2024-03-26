@@ -1,6 +1,7 @@
 import Image from "next/image"
-import getCampground from "@/libs/getCampground"
 import Link from "next/link"
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 
 export default function CampgroundDetail({ campgroundDetail }: { campgroundDetail: any }){
 
@@ -17,8 +18,8 @@ export default function CampgroundDetail({ campgroundDetail }: { campgroundDetai
                     <div className="text-[48px]  text-gray-600 ">{campgroundDetail.name}</div>
                     <div className="text-[18px] text-gray-500">{campgroundDetail.description}</div>
                     <div className="text-[16px]  mt-12">{campgroundDetail.address} {campgroundDetail.province}</div>
-                    <div className="text-[16px] ">postal code : {campgroundDetail.postalcode}</div>
-                    <div className="text-[16px]  mb-12">phone : {campgroundDetail.telephoneNumber}</div>
+                    <div className="text-[16px] "><LocalPostOfficeIcon/> {campgroundDetail.postalcode}</div>
+                    <div className="text-[16px]  mb-12"><LocalPhoneIcon/> {campgroundDetail.telephoneNumber}</div>
 
 
                     <Link href={`/booking/${campgroundDetail._id}`} className="mt-4  justify-center bg-white">

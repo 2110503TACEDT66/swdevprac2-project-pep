@@ -59,7 +59,7 @@ export default function TopMenu(){
     return (
         <div className="h-[10%] px-[48px] fixed m-0 top-0 left-0 bottom-0 right-0 z-30 flex flex-row items-center bg-white justify-between">
             <div className="flex items-center">
-                <TopMenuItem title='Logo' pageRef='/'></TopMenuItem>
+                <TopMenuItem title='LETSCAMP' pageRef='/'></TopMenuItem>
             </div>
             <div className="flex items-center">
                 <TopMenuItem title='Campground' pageRef='/campground'></TopMenuItem>

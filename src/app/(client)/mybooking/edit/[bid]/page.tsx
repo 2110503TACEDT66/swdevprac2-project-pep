@@ -8,14 +8,12 @@ import { FormControl, FormLabel } from '@mui/material';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import config from '@/utils/config';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import PersonIcon from '@mui/icons-material/Person';
 import { useRouter } from 'next/navigation';
 import { UserRole, UserJSON, CampgroundItem } from '../../../../../../interface';
 import getCampground from '@/libs/getCampground';
 import Image from 'next/image';
+import Loading from '@/components/Loading';
 
 export interface BookingItem {
     campground: {
@@ -50,10 +48,12 @@ function EditBookingPage({ params }: {params:{bid:string}}) {
     });
 
     const [date, setDate] = useState<Date | null>(null);
+    const [loading, setLoading] = useState(true);
 
     const router = useRouter()
 
     useEffect(() => {
+        setLoading(true)
         fetchData();
         fetchUserRole();
     }, []);
@@ -63,6 +63,7 @@ function EditBookingPage({ params }: {params:{bid:string}}) {
             const response = await axios.get<BookingJSON>(`${config.api}/bookings/${params.bid}`, config.headers());
         if (response.data.success === true) {
             setBooking(response.data.data);
+            setLoading(false)
         } else {
                 throw new Error("failed to fetch data.")
             }
@@ -76,6 +77,7 @@ function EditBookingPage({ params }: {params:{bid:string}}) {
             const response = await axios.get<UserJSON>(`${config.api}/auth/me`, config.headers());
             if (response.data.success === true) {
                 setUser(response.data.data)
+                setLoading(false)
             } else {
                 throw new Error(response.data.message)
             }
@@ -130,46 +132,48 @@ function EditBookingPage({ params }: {params:{bid:string}}) {
         }
     };
 
-    // Function to format the booking date to show only the date part
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        const options = { month: '2-digit' as const, day: '2-digit' as const, year: 'numeric' as const };
-        return date.toLocaleDateString(undefined, options);
-    };
-
     return (
-        <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
-        <div className="flex flex-row px-12">
-            <div className='w-[40%]'></div>
+        <>
+        {
+            loading?(
+                <Loading/>
+            ):(
+                <div className='bg-white mt-[10vh] justify-between items-center p-0 m-0 w-screen h-[90vh]'>
+                    <div className="flex flex-row px-12">
+                        <Image src={'/img/Mountains.jpg'} alt="Campground Image" width={0} height={0} sizes="100vw" className="w-[40%]"></Image>
 
-            <div className="w-[60%] text-gray-400 pt-[5%] px-5 text-left">
-                <p className='text-[48px] pt-6 text-gray-600'> Your Rest</p>
-                    
-                <div>
-                    <h2 className='text-[18px] text-gray-500'>{booking.campground.name}</h2>
-                    <div className="text-[16px]  mt-12">{booking.campground.address}</div>
-                    <p className="text-[16px]  mb-12"><LocalPhoneIcon/> {booking.campground.telephoneNumber}</p>        
-                </div>
-              
-                <form className="card-body">
-                    <FormControl>
-                        <label className="label">
-                        <span className='label-text text-[16px]'>Book Date</span>
-                        </label>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker
-                                value={date}
-                                onChange={handleDateChange}
-                            />
-                        </LocalizationProvider>
-                    </FormControl>
-                    <div className="form-control mt-6">
-                        <button className="hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400" type="button" onClick={handleBooking}>Confirm</button>
+                        <div className="w-[60%] text-gray-400 pt-[5%] px-5 text-left">
+                            <p className='text-[48px] pt-6 text-gray-600'>Edit Your Rest</p>
+                                
+                            <div>
+                                <h2 className='text-[18px] text-gray-500'>{booking.campground.name}</h2>
+                                <div className="text-[16px]  mt-12">{booking.campground.address}</div>
+                                <p className="text-[16px]  mb-12"><LocalPhoneIcon/> {booking.campground.telephoneNumber}</p>        
+                            </div>
+                        
+                            <form className="card-body">
+                                <FormControl>
+                                    <label className="label">
+                                    <span className='label-text text-[16px]'>Book Date</span>
+                                    </label>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <DatePicker
+                                            value={date}
+                                            onChange={handleDateChange}
+                                        />
+                                    </LocalizationProvider>
+                                </FormControl>
+                                <div className="form-control mt-6">
+                                    <button className="hover:bg-gray-400 hover:text-white text-gray-400 py-1 px-4 border border-gray-400" type="button" onClick={handleBooking}>Confirm</button>
+                                </div>
+                            </form>            
+                        </div>
                     </div>
-                </form>            
-            </div>
-        </div>
-    </div>
+                </div>
+            )
+        }
+        </>
+        
     );
 }
 
