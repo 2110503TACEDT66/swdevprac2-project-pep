@@ -51,12 +51,10 @@ function SignInForm() {
     };
 
     return (
-        <div className='flex flex-row'>
-            <div className='w-[60vw] h-[90vh] bg-gray-600'>
-
-            </div>
-            <div className='w-[40vw] p-[40px] flex flex-col justify-center'>
-                <div className='text-[50px] leading-[60px] text-gray-500'>Welcome, login to your account.</div>
+        <div className='flex flex-col md:flex-row'>
+            <img src="img/signin.jpg" alt="Sign In" className='w-full h-[40vh] md:w-[60vw] md:h-[90vh]' />
+            <div className='w-full md:w-[40vw] p-[30px] flex flex-col justify-center'>
+                <div className='text-[30px] leading-[40px] md:text-[55px] md:leading-[60px] text-gray-500'>Welcome, login to your account.</div>
                 <div className='mt-[15px] text-[15px] text-gray-400'>If you don't have an account, <a href="/signup" className='text-gray-500 hover:text-gray-600'>sign up here !</a></div>
                     <form onSubmit={handleSubmit} className='py-[15px] text-gray-500'>
                         <div className='my-[10px]'>
