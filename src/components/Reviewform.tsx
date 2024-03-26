@@ -6,8 +6,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Rating from '@mui/material/Rating';
 
-function ReviewForm({ params, onClose }: { params: { cid: string }, onClose: () => void, onSubmit: () => void}) {
-    const [author, setAuthor] = useState('');
+function ReviewForm({ params, onClose , onSubmit}: { params: { cid: string }, onClose: () => void, onSubmit: () => void}) {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
 
@@ -15,12 +14,11 @@ function ReviewForm({ params, onClose }: { params: { cid: string }, onClose: () 
         e.preventDefault();
         try {
             const payload = {
-                author,
                 rating,
                 comment
             };
 
-            const response = await axios.post(`${config.api}/campgrounds/${params.cid}/review`, payload);
+            const response = await axios.post(`${config.api}/campgrounds/${params.cid}/reviews`, payload);
 
             if (response.data.success === true) {
                 Swal.fire({
@@ -53,14 +51,6 @@ function ReviewForm({ params, onClose }: { params: { cid: string }, onClose: () 
                 </button>
                 <h2 className="text-2xl font-bold mb-4">Create Review</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-                    <label className="text-gray-700">Author:</label>
-                    <input
-                        type="text"
-                        value={author}
-                        onChange={(e) => setAuthor(e.target.value)}
-                        required
-                        className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-400"
-                    />
 
                     <label className="text-gray-700">Rating:</label>
                     <Rating

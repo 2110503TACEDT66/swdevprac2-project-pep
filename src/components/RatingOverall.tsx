@@ -86,7 +86,11 @@ export default function RatingOverall({ reviewJson, cid }: { reviewJson: { count
             </div>
 
             {showReviewForm && (
-                <ReviewForm params={{ cid: cid }} onClose={handleCloseReviewForm} onSubmit={handleReviewSubmit} />
+                <ReviewForm
+                    params={{ cid: cid }}
+                    onClose={handleCloseReviewForm}
+                    onSubmit={handleReviewSubmit}
+                />
             )}
         </div>
     );

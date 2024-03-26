@@ -5,7 +5,6 @@ function SignInPage() {
   return (
     <div>
       <SignInForm />
-      <p>If you don't have an account, <a href="/signup">sign up here</a>.</p>
     </div>
   );
 }
