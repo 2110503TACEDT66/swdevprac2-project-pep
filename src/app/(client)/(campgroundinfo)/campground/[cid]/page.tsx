@@ -6,12 +6,13 @@ import getReview from "@/libs/getReview";
 
 export default async function CampgroundDetailPage({params}:{params:{cid:string}}){
 
-    const campgroundDetail = await getCampground(params.cid)
     const reviewDetail = await getReview(params.cid)
+    const campgroundDetail = await getCampground(params.cid)
     
     return(
         <div>
             <CampgroundDetail campgroundDetail={campgroundDetail.data}></CampgroundDetail>
+            <RatingOverall reviewJson={reviewDetail} cid={params.cid}></RatingOverall>
             <ReviewCatalog reviewJson={reviewDetail}></ReviewCatalog>
         </div>
     );

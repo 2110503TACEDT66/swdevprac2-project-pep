@@ -1,13 +1,47 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Rating } from "@mui/material";
+import ReviewForm from "./Reviewform";
 
-export default function RatingOverall() {
+export default function RatingOverall({ reviewJson, cid }: { reviewJson: { count: number, data: { user: string, rating: number, review: string }[] }, cid: string }) {
+    const [overallRating, setOverallRating] = useState<number | null>(null);
+    const [starLevels, setStarLevels] = useState<number[]>([0, 0, 0, 0, 0]);
+    const [showReviewForm, setShowReviewForm] = useState(false);
 
-    const [value, setValue] = useState<number | null>(5);
+    useEffect(() => {
+        if (reviewJson && reviewJson.data) {
+            let totalRating = 0;
+            reviewJson.data.forEach(review => {
+                totalRating += review.rating;
+            });
+            console.log("Total Rating:", totalRating);
+            console.log("Total Reviews:", reviewJson.count);
+            const avgRating = totalRating / reviewJson.count;
+            console.log("Average Rating:", avgRating);
+            setOverallRating(avgRating);
+    
+            const starCounts = Array(5).fill(0);
+            reviewJson.data.forEach(review => {
+                starCounts[review.rating - 1]++;
+            });
+            const normalizedCounts = starCounts.map(count => count / reviewJson.count * 100);
+            setStarLevels(normalizedCounts);
+        }
+    }, [reviewJson]);
 
-    const starLevels = [20, 40, 60, 80, 100];
+    const handleCreateReview = () => {
+        setShowReviewForm(true);
+    };
+
+    const handleCloseReviewForm = () => {
+        setShowReviewForm(false);
+    };
+
+    const handleReviewSubmit = () => {
+        // Handle any logic after review submission if needed
+        handleCloseReviewForm();
+    };
 
     return (
         <div className="h-[50%] w-full p-2 bg-white m-0">
@@ -23,19 +57,19 @@ export default function RatingOverall() {
             <div className="h-[40%] w-full  flex flex-row">
                 <div className="w-[50%] bg-white flex flex-row justify-end border-r-2">
                     <div className="p-4 flex flex-col fustify-center items-center">
-                        <h1 className="text-gray-400 text-[48px]">5/5</h1>
-                        <Rating name="read-only" value={value} readOnly />
+                        <h1 className="text-gray-400 text-[48px]">{overallRating?.toFixed(1) || "N/A"}/5</h1>
+                        <Rating name="read-only" value={overallRating} readOnly />
                     </div>
                 </div>
 
                 <div className="w-[50%] bg-white flex flex-col-reverse p-4 justify-around">
                     {starLevels.map((level, index) => (
-                        <div className="flex flex-row bg-white space-x-2 items-center">
+                        <div className="flex flex-row bg-white space-x-2 items-center" key={index}>
                             <div className="text-[16px] text-gray-400">
                                 {index + 1}
                             </div>
 
-                            <div key={index} className="h-3 w-[50%] bg-gray-200 rounded-full overflow-hidden">
+                            <div className="h-3 w-[50%] bg-gray-200 rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-gray-400"
                                     style={{ width: `${level}%` }}
@@ -45,7 +79,15 @@ export default function RatingOverall() {
                     ))}
                 </div>
             </div>
+            <div className="h-[15%] w-full mt-4 flex flex-row justify-center bg-white">
+                <button onClick={handleCreateReview} className=" h-[40px] hover:bg-gray-400 hover:text-white text-gray-400 font-bold py-1 px-4 border-2 border-gray-400">
+                    Create Review
+                </button>
+            </div>
 
+            {showReviewForm && (
+                <ReviewForm params={{ cid: cid }} onClose={handleCloseReviewForm} onSubmit={handleReviewSubmit} />
+            )}
         </div>
     );
 }

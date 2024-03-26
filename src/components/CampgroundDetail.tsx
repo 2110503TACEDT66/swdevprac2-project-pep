@@ -31,9 +31,6 @@ export default async function CampgroundDetail({ campgroundDetail }: { campgroun
                             Make Booking
                         </button>
                     </Link>
-                    <div>
-                        <RatingOverall/>
-                    </div>
                     
                 </div>
             </div>

@@ -1,9 +1,17 @@
+import { count } from 'console';
 import ReviewCard from './ReviewCard';
 
-export default function ReviewCatalog({reviewJson}:{reviewJson:{count:number, data:{   
-    user: string,
-    rating: number,
-    review: string,}[]}}){
+export default function ReviewCatalog({reviewJson}:
+    {reviewJson:{
+        count:number, 
+        data:{   
+            user: string,
+            rating: number,
+            review: string,}[]
+        }
+    }){
+
+    console.log(reviewJson.count);
 
     return(
         <div className="h-screen m-[20px] bg-indigo-200">

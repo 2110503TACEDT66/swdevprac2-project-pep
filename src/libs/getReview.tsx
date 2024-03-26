@@ -6,6 +6,7 @@ export default async function getReview(id:string) {
 
     if (!response.ok) {
         throw new Error('Failed to fetch reviews ' + response.statusText);
+        
     }
 
     return await response.json();
