@@ -3,7 +3,7 @@ import SignInForm from '@/components/SignInForm';
 
 function SignInPage() {
   return (
-    <div>
+    <div className='h-[90vh] w-full mt-[10vh]'>
       <SignInForm />
     </div>
   );

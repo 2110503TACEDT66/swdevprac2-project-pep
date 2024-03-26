@@ -53,7 +53,7 @@ function SignUpForm() {
   };
 
   return (
-    <div className='flex flex-col md:flex-row'>
+    <div className='flex flex-col md:flex-row '>
       <div className='w-full md:w-[40vw] p-[30px] flex flex-col justify-center'>
       <div className='text-[35px] text-gray-500'>Unlock a world of possibilities.</div>
       <div className='text-[25px] text-gray-400'>Sign up today and begin your journey !</div>
@@ -85,7 +85,7 @@ function SignUpForm() {
           <button type="submit" className='border border-gray-400 mt-[10px] bg-white hover:bg-gray-400 px-4 py-2 text-gray-400 hover:text-white'>Sign Up</button>
         </form>
       </div>
-      <img src="img/signup.jpg" alt="Sign Up" className='md:w-[60vw] md:h-[90vh]' />
+      <img src="img/signup.jpg" alt="Sign Up" className='hidden md:block md:w-[60vw] md:h-[90vh]' />
     </div>
   );
 }
