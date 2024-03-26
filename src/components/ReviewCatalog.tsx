@@ -1,10 +1,15 @@
 import { count } from 'console';
 import ReviewCard from './ReviewCard';
 
-export default function ReviewCatalog({reviewJson}:{reviewJson:{count:number, data:{   
-    userName: string,
-    rating: number,
-    review: string,}[]}}){
+export default function ReviewCatalog({reviewJson}:
+    {reviewJson:{
+        count:number, 
+        data:{   
+            user: string,
+            rating: number,
+            review: string,}[]
+        }
+    }){
 
     console.log(reviewJson.count);
 
@@ -13,7 +18,7 @@ export default function ReviewCatalog({reviewJson}:{reviewJson:{count:number, da
             <div className="h-[50%] px-48 flex flex-col overflow-clip overflow-y-scroll">
                     {
                     reviewJson.data.map((reviewItem:any)=>(
-                        <ReviewCard userName={reviewItem.userName} rating={reviewItem.rating} review={reviewItem.review}/>
+                        <ReviewCard user={reviewItem.user} rating={reviewItem.rating} review={reviewItem.review}/>
                     ))
                 }
             </div>
